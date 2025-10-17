@@ -1,0 +1,6 @@
+hr-interview-assistant/
+│
+├── jassXujjawal.py                 # Main application file
+├── requirements.txt        # Python dependencies
+├── README.md              # Project documentation
+└── evaluation_guide.md    # Detailed HR evaluation criteria
