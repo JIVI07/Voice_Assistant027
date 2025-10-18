@@ -1,0 +1,98 @@
+For macOS:
+
+brew install portaudio
+------------------------------------------------------------------------------------------------------------------------------------------
+For Linux (Ubuntu/Debian):
+
+sudo apt update
+sudo apt install python3-pyaudio portaudio19-dev
+sudo apt install espeak espeak-data libespeak1 libespeak-dev
+-------------------------------------------------------------------------------------------------------------------------------------------
+Voice Commands
+
+start interview - Begin the HR interview session
+next question - Move to the next interview question
+repeat question - Repeat the current question
+evaluation guide - Display HR evaluation criteria
+stop interview - End the interview session
+exit - Quit the application
+------------------------------------------------------------------------------------------------------------------------------------------
+Interview Structure
+
+The assistant conducts interviews in 5 categories:
+Technical Knowledge - Programming languages, frameworks, tools
+AI & ML Understanding - AI integration, model evaluation, data preprocessing
+Practical Scenarios - Real-world challenges from internships
+Behavioral Skills - Team collaboration, problem-solving, communication
+Career Motivation - Goals, learning experiences, future aspirations
+------------------------------------------------------------------------------------------------------------------------------------------
+Customization
+
+Modifying Questions
+Edit the _load_questions() method in main.py to customize questions for different candidates:
+def _load_questions(self):
+    questions = {
+        "technical": [
+            "Your custom technical questions here...",
+        ],
+        # Add other categories...
+    }
+    return questions
+----------------------------------------------------------------------------------------------------------------------------------------
+Adjusting Speech Settings
+
+Modify text-to-speech properties in the init method:
+self.engine.setProperty('rate', 150)    # Speech speed (words per minute)
+self.engine.setProperty('volume', 0.8)  # Volume level (0.0 to 1.0)
+------------------------------------------------------------------------------------------------------------------------------------------
+HR Evaluation Guide
+
+Technical Assessment Criteria
+Depth of Knowledge: Understanding beyond surface-level concepts
+Practical Application: Real-world implementation experience
+Problem-Solving: Structured approach to technical challenges
+Tool Proficiency: Effective use of frameworks and development tools
+----------------------------------------------------------------------------------------------------------------------------------------
+Behavioral Indicators
+
+Communication Skills: Clarity in explaining technical concepts
+Team Collaboration: Experience working in diverse teams
+Adaptability: Handling different work environments and challenges
+Initiative: Proactive learning and contribution beyond assigned tasks
+---------------------------------------------------------------------------------------------------------------------------------------------
+Red Flags
+
+Vague answers without specific examples
+Inability to explain technical decisions
+Lack of reflection on past experiences
+Poor understanding of project impact
+-------------------------------------------------------------------------------------------------------------------------------------------
+Troubleshooting
+
+Common Issues
+
+1- Microphone Not Working
+Check system microphone permissions
+Ensure microphone is not muted
+Test with other applications
+
+2- Speech Recognition Errors
+Speak clearly in a quiet environment
+Adjust microphone sensitivity in system settings
+Check internet connection (Google speech recognition requires internet)
+
+3- Text-to-Speech Issues
+Verify speaker/headphone connection
+Check system volume settings
+On Linux, ensure espeak is properly installed
+----------------------------------------------------------------------------------------------------------------------------------------
+Debug Mode
+Enable debug output by modifying the listen() method:
+def listen(self):
+    try:
+        with self.microphone as source:
+            print("DEBUG: Listening...")
+            audio = self.recognizer.listen(source, timeout=10, phrase_time_limit=15)
+        # ... rest of the method
+--------------------------------------------------------------------------------------------------------------------------------------------
+
